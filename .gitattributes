@@ -1,3 +1,5 @@
 data/RNAseq/RNAseq_rawcts/RNAseq_full_dds_counts-updated.csv filter=lfs diff=lfs merge=lfs -text
 data/RNAseq/TPM_annotated_matrix-updated.csv filter=lfs diff=lfs merge=lfs -text
 data/gencode.v44.annotation.gtf filter=lfs diff=lfs merge=lfs -text
+data/RNAseq/RNAseq_rawcts/RNAseq_count_matrix.csv filter=lfs diff=lfs merge=lfs -text
+data/RNAseq/TPM_annotated_matrix.csv filter=lfs diff=lfs merge=lfs -text

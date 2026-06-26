@@ -871,7 +871,7 @@ def load_all_data(data_path: str, subtype: str, pathway_options: list):
     # ---------------- 2) Load matrices ----------------
     # RNA TPM
     rna_wide = _read_csv_norm(
-        os.path.join(data_path, "RNAseq/TPM_annotated_matrix-updated.csv"), index_col=0
+        os.path.join(data_path, "RNAseq/TPM_annotated_matrix.csv"), index_col=0
     )
     print("Loading TPMS")
 
@@ -883,14 +883,14 @@ def load_all_data(data_path: str, subtype: str, pathway_options: list):
     # Raw counts
     try:
         rna_raw = pd.read_csv(
-            os.path.join(data_path, "RNAseq/RNAseq_rawcts/RNAseq_full_dds_counts-updated.csv"),
+            os.path.join(data_path, "RNAseq/RNAseq_rawcts/RNAseq_count_matrix.csv"),
             sep=None,
             engine="python",
             index_col=0,
         )
     except Exception:
         rna_raw = _read_csv_norm(
-            os.path.join(data_path, "RNAseq/RNAseq_rawcts/RNAseq_full_dds_counts-updated.csv"),
+            os.path.join(data_path, "RNAseq/RNAseq_rawcts/RNAseq_count_matrix.csv"),
             index_col=0,
             allow_missing=False,
         )
@@ -979,7 +979,7 @@ def load_all_data(data_path: str, subtype: str, pathway_options: list):
         name_includes=("estimate",),
         exts=(".csv", ".tsv", ".txt"),
     )
-    estimate_path = os.path.join(data_path, "RNAseq", "ESTIMATE", "estimate_merged_metadata.csv")
+    estimate_path = os.path.join(data_path, "RNAseq", "ESTIMATE", "estimate.csv")
     estimate = _load_estimate_table(estimate_path) if os.path.exists(estimate_path) else pd.DataFrame()
 
     # ---------------- NEW: Band binary load ----------------
@@ -1004,7 +1004,7 @@ def load_all_data(data_path: str, subtype: str, pathway_options: list):
             os.path.join(data_path, "tide"),
             data_path,
         ],
-        name_includes=("tide_merged_with_metadata",),
+        name_includes=("tide",),
         exts=(".tsv", ".txt", ".csv"),
     )
     tide = _load_tide_table(tide_path) if tide_path else pd.DataFrame()
@@ -1012,7 +1012,7 @@ def load_all_data(data_path: str, subtype: str, pathway_options: list):
     # ---------------- NEW: EcoTyper load ----------------
     ecotyper_base = None
     for cand in [
-        os.path.join(data_path, "RNAseq/ecotyper/TPM_annotated_matrix-updated")
+        os.path.join(data_path, "RNAseq/ecotyper")
     ]:
         if os.path.exists(cand) and os.path.isdir(cand):
             ecotyper_base = cand
