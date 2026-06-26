@@ -1,0 +1,12 @@
+feature
+CLINICALblock__age_dx
+CLINICALblock__ajcc_css
+CLINICALblock__ck56_lab
+CLINICALblock__egfr_lab
+CLINICALblock__er_status
+CLINICALblock__her2_lab
+CLINICALblock__ki67_lab
+CLINICALblock__lymphnode_invol
+CLINICALblock__lymphocyteresponse
+CLINICALblock__pr_status
+CLINICALblock__tumor_size
