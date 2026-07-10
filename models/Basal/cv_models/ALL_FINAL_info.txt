@@ -1,0 +1,8 @@
+Model Type: GradientBoosting+Calibrated(sigmoid,cv=5)
+GridSearchCV mean ROC AUC (inner CV): 0.8057
+Best Params:
+  model__learning_rate: 0.1
+  model__max_depth: 3
+  model__n_estimators: 400
+  model__subsample: 0.8
+  oversampler__ratio: 1.5

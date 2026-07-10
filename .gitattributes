@@ -3,3 +3,11 @@ data/RNAseq/TPM_annotated_matrix-updated.csv filter=lfs diff=lfs merge=lfs -text
 data/gencode.v44.annotation.gtf filter=lfs diff=lfs merge=lfs -text
 data/RNAseq/RNAseq_rawcts/RNAseq_count_matrix.csv filter=lfs diff=lfs merge=lfs -text
 data/RNAseq/TPM_annotated_matrix.csv filter=lfs diff=lfs merge=lfs -text
+*.pkl filter=lfs diff=lfs merge=lfs -text
+*.joblib filter=lfs diff=lfs merge=lfs -text
+*.csv filter=lfs diff=lfs merge=lfs -text
+data/RNAseq/RNAseq_rawcts/*.csv filter=lfs diff=lfs merge=lfs -text
+**/cv_models/*.pkl filter=lfs diff=lfs merge=lfs -text
+**/preprocessing/*.joblib filter=lfs diff=lfs merge=lfs -text
+models/*/cv_models/*.pkl filter=lfs diff=lfs merge=lfs -text
+models/*/preprocessing/*.joblib filter=lfs diff=lfs merge=lfs -text

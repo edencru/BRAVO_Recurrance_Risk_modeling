@@ -17,9 +17,9 @@ except ImportError:
 
 print("✅ Successfully loaded typing_extensions from:", typing_extensions.__file__)
 
-from pydeseq2.dds import DeseqDataSet
-from pydeseq2.default_inference import DefaultInference
-from pydeseq2.ds import DeseqStats
+# from pydeseq2.dds import DeseqDataSet
+# from pydeseq2.default_inference import DefaultInference
+# from pydeseq2.ds import DeseqStats
 sys.path.append('./scripts')
 from pathwayanalysis_utils import *
 

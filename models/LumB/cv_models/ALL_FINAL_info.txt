@@ -1,0 +1,8 @@
+Model Type: LogReg_L1_liblinear+Calibrated(sigmoid,cv=3)
+GridSearchCV mean ROC AUC (inner CV): 0.8052
+Best Params:
+  model__C: 10
+  model__class_weight: {0: 1.0, 1: 2.0}
+  model__max_iter: 10000
+  model__penalty: l1
+  oversampler__ratio: 2.4

@@ -7,6 +7,9 @@ import pandas as pd
 import numpy as np
 
 
+## no snv calls on github - if you want to override with your snvs, change this to 'snv'
+MUT_PATHWAY_SOURCE = "import"
+
 def make_unique(names):
     counts = Counter()
     result = []
@@ -898,7 +901,7 @@ def load_all_data(data_path: str, subtype: str, pathway_options: list):
 
     # CNV
 
-    cnv_path = os.path.join(data_path, "copynumber/copy_number.discrete_cn.tsv")
+    cnv_path = os.path.join(data_path, "copynumber/gene_level_matrix.tsv")
 
     # EXPLICIT TSV READ
     cnv = pd.read_csv(cnv_path, sep="\t", low_memory=False)
@@ -1282,19 +1285,53 @@ def load_all_data(data_path: str, subtype: str, pathway_options: list):
     clinical = clinical_num
 
     # ---------------- Mutations ----------------
-    if len(subtype_list) == 1:
-        mut_path = os.path.join(data_path, f"mutations/mutationmatrix_{subtype_list[0]}.csv")
-        mut_df = pd.read_csv(mut_path, index_col=0)
-        if "patient_id" in mut_df.columns:
-            mut_df["patient_id"] = _norm_ids(mut_df["patient_id"])
-            mut_df = mut_df.set_index("patient_id")
+    # if len(subtype_list) == 1:
+    #     mut_path = os.path.join(data_path, f"mutations/mutationmatrix_{subtype_list[0]}.csv")
+    #     mut_df = pd.read_csv(mut_path, index_col=0)
+    #     if "patient_id" in mut_df.columns:
+    #         mut_df["patient_id"] = _norm_ids(mut_df["patient_id"])
+    #         mut_df = mut_df.set_index("patient_id")
+    #     else:
+    #         mut_df.index = _norm_ids(mut_df.index)
+    #     mut_df = mut_df.drop(columns=["pam50_subtype", "Disease Status", "group"], errors="ignore")
+    #     mut_df = mut_df.loc[mut_df.index.isin(subtype_ids)]
+    #     mut_df = mut_df.reindex(subtype_ids).fillna(0)
+    # else:
+    #     mut_df = _concat_mut_by_subtypes(data_path, subtype_list, subtype_ids)
+    
+
+
+    # ---------------- Mutations ----------------
+    if MUT_PATHWAY_SOURCE == "snv":
+
+        if len(subtype_list) == 1:
+            mut_path = os.path.join(
+                data_path,
+                f"mutations/mutationmatrix_{subtype_list[0]}.csv"
+            )
+
+            mut_df = pd.read_csv(mut_path, index_col=0)
+
+            if "patient_id" in mut_df.columns:
+                mut_df["patient_id"] = _norm_ids(mut_df["patient_id"])
+                mut_df = mut_df.set_index("patient_id")
+            else:
+                mut_df.index = _norm_ids(mut_df.index)
+
+            mut_df = mut_df.drop(
+                columns=["pam50_subtype", "Disease Status", "group"],
+                errors="ignore"
+            )
+
+            mut_df = mut_df.loc[mut_df.index.isin(subtype_ids)]
+            mut_df = mut_df.reindex(subtype_ids).fillna(0)
+
         else:
-            mut_df.index = _norm_ids(mut_df.index)
-        mut_df = mut_df.drop(columns=["pam50_subtype", "Disease Status", "group"], errors="ignore")
-        mut_df = mut_df.loc[mut_df.index.isin(subtype_ids)]
-        mut_df = mut_df.reindex(subtype_ids).fillna(0)
+            mut_df = _concat_mut_by_subtypes(data_path, subtype_list, subtype_ids)
+
     else:
-        mut_df = _concat_mut_by_subtypes(data_path, subtype_list, subtype_ids)
+        # Do not load SNV mutation matrix unless mut_pathway_source == "snv"
+        mut_df = pd.DataFrame(index=subtype_ids)
 
     # ---------------- 3) Pathway gene sets ----------------
     all_pathway_dicts = {"mutation": {}, "copynumber": {}, "RNA": {}}

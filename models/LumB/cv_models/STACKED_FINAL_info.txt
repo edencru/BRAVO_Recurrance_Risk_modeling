@@ -1,0 +1,17 @@
+blocks: RNA,CNV,MUT,CLINICAL
+meta_model: logreg
+stack_inner_cv: 5
+gridsearch: True
+gridsearch_scoring: roc_auc
+gridsearch_outer_cv: 5
+gridsearch_best_score: 0.8392525252525254
+gridsearch_best_params: {"final_estimator__C": 0.1, "final_estimator__penalty": "l2"}
+scale_mode: training
+calibrated: True (sigmoid)
+
+[TRAIN] AUCs (training-set):
+  p_CLINICAL: 0.6825
+  p_CNV: 0.9926
+  p_MUT: 0.7943
+  p_RNA: 1.0000
+  p_STACKED: 1.0000
