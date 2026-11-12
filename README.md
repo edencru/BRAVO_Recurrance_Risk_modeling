@@ -383,8 +383,7 @@ A label-correlation prefilter was applied before supervised testing.
 
 ```text
 Correlation prefilter: enabled
-Minimum absolute feature-label correlation: 0.01
-Minimum samples for correlation: 5
+Minimum absolute feature-label correlation: 0.15
 ```
 
 After supervised feature selection, redundancy pruning was performed using feature-feature correlation.
@@ -439,8 +438,7 @@ A label-correlation prefilter was applied before supervised testing.
 
 ```text
 Correlation prefilter: enabled
-Minimum absolute feature-label correlation: 0.01
-Minimum samples for correlation: 5
+Minimum absolute feature-label correlation: 0.15
 ```
 
 After supervised feature selection, redundancy pruning was performed using feature-feature correlation.
@@ -494,8 +492,7 @@ A label-correlation prefilter was applied before supervised testing.
 
 ```text
 Correlation prefilter: enabled
-Minimum absolute feature-label correlation: 0.01
-Minimum samples for correlation: 5
+Minimum absolute feature-label correlation: 0.15
 ```
 
 After supervised feature selection, redundancy pruning was performed using feature-feature correlation.
